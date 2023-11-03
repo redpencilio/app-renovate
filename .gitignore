@@ -3,3 +3,4 @@
 *.log
 tmp/
 secrets
+docker-compose.override.yml

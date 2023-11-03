@@ -1,0 +1,17 @@
+version: "3.4"
+x-logging: &default-logging
+  driver: "json-file"
+  options:
+    max-size: "10m"
+    max-file: "3"
+services:
+  renovate:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      APP_ID: 349967
+      APP_INSTALLATION_ID: 38811142
+
+    volumes:
+      - ./config/renovate:/config

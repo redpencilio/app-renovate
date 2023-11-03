@@ -1,4 +1,9 @@
 #! /usr/bin/env sh
 
-RENOVATE_TOKEN=$(./refresh-token.sh)
-docker run --rm -v "$PWD/config/renovate/renovate.js:/usr/src/app/config.js" -e RENOVATE_TOKEN="$RENOVATE_TOKEN" renovate/renovate:slim
+PRIV_KEY_FILE="/secrets/private-key.pem"
+
+export RENOVATE_TOKEN=$(github-app-installation-token --privateKeyLocation $PRIV_KEY_FILE --appId $APP_ID --installationId $APP_INSTALLATION_ID)
+export RENOVATE_CONFIG_FILE="/config/renovate.js"
+
+
+renovate
